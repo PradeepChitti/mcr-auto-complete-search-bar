@@ -28,6 +28,40 @@
   color: #61dafb;
 }
 
+.icon {
+  width: 18px;
+  margin-right: 10px;
+}
+
+.search-container {
+  width: 500px;
+  margin: auto;
+  border: 1px solid grey;
+}
+
+.search-input {
+  width: 90%;
+  border: none;
+}
+
+.results-container {
+  margin: auto;
+  width: 500px;
+  max-height: 500px;
+  text-align: left;
+  border: 1px solid grey;
+  overflow-y: scroll;
+}
+
+.results {
+  list-style: none;
+}
+
+.results:hover {
+  cursor: pointer;
+  background-color: rgb(225, 223, 223);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
