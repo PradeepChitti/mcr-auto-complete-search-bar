@@ -1,6 +1,12 @@
 import React from "react";
 
-const SearchBar = ({ handleChange, handleFocus, handleBlur, inputValue }) => {
+const SearchBar = ({
+  handleChange,
+  handleFocus,
+  handleBlur,
+  inputValue,
+  handleKeyDown,
+}) => {
   return (
     <div>
       <div className="search-container">
@@ -17,6 +23,7 @@ const SearchBar = ({ handleChange, handleFocus, handleBlur, inputValue }) => {
           className="search-input"
           onFocus={handleFocus}
           // onBlur={handleBlur}
+          onKeyDown={(e) => handleKeyDown(e)}
         />
       </div>
     </div>

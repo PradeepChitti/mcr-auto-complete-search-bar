@@ -8,6 +8,7 @@ function App() {
   const [showResults, setShowResults] = useState(false);
   const [data, setData] = useState([]);
   const [cache, setCache] = useState({});
+  const [selectedItem, setSelectedItem] = useState(0);
 
   const handleChange = (query) => {
     setInputValue(query);
@@ -16,6 +17,18 @@ function App() {
   const handleFocus = () => setShowResults(true);
   const handleBlur = () => setShowResults(false);
 
+  const handleKeyDown = (e) => {
+    console.log(e.key);
+    if (e.key === "ArrowDown") {
+      setSelectedItem((prevValue) => prevValue + 1);
+    } else if (e.key === "ArrowUp") {
+      setSelectedItem((prevValue) => prevValue - 1);
+    } else if (e.key === "Enter") {
+      setInputValue(data[selectedItem - 1].name);
+    }
+  };
+
+  // console.log(selectedItem);
   useEffect(() => {
     const fetchData = async () => {
       // Caching
@@ -50,12 +63,20 @@ function App() {
         handleFocus={handleFocus}
         handleBlur={handleBlur}
         inputValue={inputValue}
+        handleKeyDown={handleKeyDown}
       />
       {showResults && data && (
         <div className="results-container">
           {data?.map((el) => {
             return (
-              <ul className="results">
+              <ul
+                className="results"
+                style={
+                  selectedItem === el.id
+                    ? { backgroundColor: "rgb(225, 223, 223)" }
+                    : {}
+                }
+              >
                 <li key={el.id} onClick={() => setInputValue(el.name)}>
                   {el.name}
                 </li>
